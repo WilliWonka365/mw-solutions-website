@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "mw-solutions-website"
+  "defaultProject": "mw-solutions-website",
+  "cli": {
+    "analytics": false
+  }
 }

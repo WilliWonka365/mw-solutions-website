@@ -1,1 +1,102 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$primary-palette: (
+    50 : #e6eef7,
+    100 : #c0d4ec,
+    200 : #97b7df,
+    300 : #6d9ad2,
+    400 : #4d85c8,
+    500 : #2e6fbe,
+    600 : #2967b8,
+    700 : #235caf,
+    800 : #1d52a7,
+    900 : #124099,
+    A100 : #cbdbff,
+    A200 : #98b7ff,
+    A400 : #6593ff,
+    A700 : #4c82ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$mw-solutions-website-primary: mat.define-palette($primary-palette);
+$mw-solutions-website-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$mw-solutions-website-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$mw-solutions-website-theme: mat.define-light-theme((
+  color: (
+    primary: $mw-solutions-website-primary,
+    accent: $mw-solutions-website-accent,
+    warn: $mw-solutions-website-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($mw-solutions-website-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --menu-width-open: 180px;
+  --menu-width-closed: 55px;
+}
+
+.mat-drawer-container {
+  .mat-drawer {
+    box-sizing: content-box;
+    width: var(--menu-width-open);
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  .mat-drawer-content {
+    // transform: translateX(200px);
+    margin-left: var(--menu-width-open) !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  &.container-closed {
+    .mat-drawer {
+      width: var(--menu-width-closed);
+    }
+
+    .mat-drawer-content {
+      // transform: translateX(64px) !important;
+      margin-left: var(--menu-width-closed) !important;
+    }
+  }
+}
